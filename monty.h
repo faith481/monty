@@ -46,16 +46,29 @@ typedef struct instruction_s
 * @apc: push command
 **/
 
-extern instruction_t opcodes[];
-unsigned int len(stack_t **stack);
-void free_stack(stack_t *stack);
-void op_nop(stack_t **stack, unsigned int line_number);
-void op_pop(stack_t **stack, unsigned int line_number);
-void op_push(stack_t **stack, char *n, unsigned int line_number);
-void op_pall(stack_t **stack, unsigned int line_number);
-void op_pint(stack_t **stack, unsigned int line_number);
-int find_opcode(stack_t **stack, char *opcode, int line_number);
-void op_swap(stack_t **stack, unsigned int line_number);
-size_t lol(stack_t *h);
+extern cmds *head;
+cmds *command_builder(cmds **head, char *s, int i);
+void m_push(stack_t **stack, unsigned int line_number);
+void m_pall(stack_t **stack, unsigned int line_number);
+void mega_pint(stack_t **stack, unsigned int line_number);
+void m_pop(stack_t **stack, unsigned int line_number);
+void m_swap(stack_t **stack, unsigned int line_number);
+void m_add(stack_t **stack, unsigned int line_number);
+void m_nop(stack_t **stack, unsigned int line_number);
+void execute_ops(stack_t **stack);
+void freell(stack_t **stack);
+void m_sub(stack_t **stack, unsigned int line_number);
+void m_div(stack_t **stack, unsigned int line_number);
+void m_mul(stack_t **stack, unsigned int line_number);
+void m_mod(stack_t **stack, unsigned int line_number);
+void m_pchar(stack_t **stack, unsigned int line_number);
+void m_pstr(stack_t **stack, unsigned int line_number);
+void m_rotl(stack_t **stack, unsigned int line_number);
+void m_rotr(stack_t **stack, unsigned int line_number);
+void m_stack(stack_t **stack, unsigned int line_number);
+void m_queue(stack_t **stack, unsigned int line_number);
+void m_pushq(stack_t **stack, unsigned int line_number);
+int m_com(char **s);
+int isint(char *s);
 
-#endif
+#endif /*MONTY_H*/
