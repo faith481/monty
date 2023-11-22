@@ -1,13 +1,10 @@
 #ifndef MONTY_H
 #define MONTY_H
-#define _GNU_SOURCE
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-
-#define DELIMITER "\n\t\r"
+#include <stdlib.h>
+#include <unistd.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -20,10 +17,27 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
+
+/**
+ * struct commands - singly linked list of parsed commands.
+ * @line_number: line number of the script.
+ * @cmd: [command, argument] array
+ * @next: next node.
+ * Return: address of linked list.
+ */
+
+typedef struct commands
+{
+	short mode;
+	unsigned int line_number;
+	char *cmd[2];
+	struct commands *next;
+} cmds;
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -32,19 +46,29 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
+
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
 /**
-* struct global_s - hold global variables
-* @return_val: return value
-* @mol: mode of list
-* @cc: code command
-* @apc: push command
-**/
+ * struct commands - singly linked list of parsed commands.
+ * @line_number: line number of the script.
+ * @cmd: [command, argument] array
+ * @next: next node.
+ * Return: address of linked list.
+ */
+
+typedef struct commands
+{
+	short mode;
+	unsigned int line_number;
+	char *cmd[2];
+	struct commands *next;
+} cmds;
 
 extern cmds *head;
 cmds *command_builder(cmds **head, char *s, int i);
