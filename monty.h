@@ -22,21 +22,6 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
-/**
- * struct commands - singly linked list of parsed commands.
- * @line_number: line number of the script.
- * @cmd: [command, argument] array
- * @next: next node.
- * Return: address of linked list.
- */
-
-typedef struct commands
-{
-	short mode;
-	unsigned int line_number;
-	char *cmd[2];
-	struct commands *next;
-} cmds;
 
 /**
  * struct instruction_s - opcode and its function
